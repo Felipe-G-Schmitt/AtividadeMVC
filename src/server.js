@@ -11,8 +11,8 @@ app.get('/projects', ProjectController.findAll)
 
 app.post('/user', UserController.insert)
 app.get('/user', UserController.findAll)
-app.put('/user', UserController.PutUser)
-app.delete('/user', UserController.DeleteUser)
+app.put('/user/id', UserController.PutUser)
+app.delete('/user/id', UserController.DeleteUser)
 
 //app.post('/tasks', TaskController.insert)
 //app.get('/tasks', TaskController.findAll)
