@@ -8,16 +8,36 @@ class User {
         this.senha = senha
     }
 
-    save() {
-        users.push(this)
+    static insert(user) {
+        users.push(user)
+        return user
     }
 
-    static fetchAll() {
+    static findAll() {
         return users
     }
 
-    static fetchById(id) {
-        return users.find(user => user.id == id)
+    static findById(id) {
+        return users.find(user => user.id === id)
+    }
+
+    static update(id, nome, email, senha) {
+        const user = this.findById(id)
+        if (user) {
+            user.nome = nome
+            user.email = email
+            user.senha = senha
+        }
+        return user
+    }
+
+    static delete(id) {
+        const index = users.findIndex(user => user.id === id)
+        if (index !== -1) {
+            users.splice(index, 1)
+            return true
+        }
+        return false
     }
 }
 

@@ -1,7 +1,6 @@
 {
   "name": "atividademvc",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
@@ -11,5 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Felipe-G-Schmitt/AtividadeMVC.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Felipe-G-Schmitt/AtividadeMVC/issues"
+  },
+  "homepage": "https://github.com/Felipe-G-Schmitt/AtividadeMVC#readme",
+  "description": ""
 }

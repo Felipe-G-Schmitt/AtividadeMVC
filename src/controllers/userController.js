@@ -5,13 +5,13 @@ class UserController {
         const { id, nome, email, senha } = req.body;
 
         const user = new User(id, nome, email, senha)
-        user.save()
+        User.insert(user)
 
         res.status(201).json(user)
     }
 
     static findAll(req, res) {
-        const users = User.fetchAll()
+        const users = User.findAll()
 
         res.json(users)
     }
@@ -20,28 +20,24 @@ class UserController {
         const { id } = req.params;
         const { nome, email, senha } = req.body;
     
-        const user = User.fetchById(id); 
-    
-        if (!user) {
+        const updatedUser = User.update(Number(id), nome, email, senha);
+
+        if (!updatedUser) {
             return res.status(404).json({ message: "Usuário não encontrado" });
         }
-    
-        user.id = id;
-        user.nome = nome;
-        user.email = email;
-        user.senha = senha;
-    
-        user.save();
-    
-        res.status(200).json(user);
+
+        res.status(200).json(updatedUser);
     }
 
     static DeleteUser(req, res) {
-        const { id } = req.body
-        const user = new User(id)
-        user.delete()
+        const { id } = req.params;
+    
+        if (!User.delete(Number(id))) {
+            return res.status(404).json({ message: "Usuário não encontrado" });
+        }
 
-        res.status(201).json(user)
+        res.status(204).send();
+        
     }
 }
 
