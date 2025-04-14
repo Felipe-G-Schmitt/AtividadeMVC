@@ -1,6 +1,11 @@
 const Project = require('../models/project')
 
 class ProjectController {
+    async getProject(req, res) {
+        const projects = await Project.findAll();
+        return res.json(projects);
+     }
+
     static insert(req, res) {
         const { id, nome, descricao } = req.body
 
@@ -40,4 +45,4 @@ class ProjectController {
     }
 }
 
-module.exports = ProjectController
+module.exports = (new ProjectController())

@@ -1,26 +1,30 @@
-const express = require('express')
-const ProjectController = require('./controllers/projectController')
-const UserController = require('./controllers/userController')
-const TaskController = require('./controllers/taskController')
-const app = express()
+const express = require('express');
 
-app.use(express.json())
+const app = express();
+app.use(express.json());
 
-app.post('/projects', ProjectController.insert)
-app.get('/projects', ProjectController.findAll)
-app.put('/projects/:id', ProjectController.update)
-app.delete('/projects/:id', ProjectController.delete)
+const database = require('./config/database');
 
-app.post('/user', UserController.insert)
-app.get('/user', UserController.findAll)
-app.put('/user/:id', UserController.PutUser)
-app.delete('/user/:id', UserController.DeleteUser)
+const userController = require('./controllers/userController');
+const projectController = require('./controllers/projectController');
 
-app.get('/tasks', TaskController.findAll)
-app.post('/tasks', TaskController.insert)
-app.put('/tasks/:id', TaskController.PutTask)
-app.delete('/tasks/:id', TaskController.DeleteTask)
+const userRoutes = require('./routes/userRoutes');
+const projectRoutes = require('./routes/projectRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000')
-})
+//app.post('/login', userController.login);
+app.post('/register', projectController.getProject);
+
+/*app.use('/api', userRoutes);
+app.use('/api', taskRoutes);
+app.use('/api', projectRoutes);*/
+
+database.db.sync({ force: true })
+    .then(() => {
+        app.listen(3000, () => {
+            console.log('Server is running on http://localhost:3000')
+        })
+    })
+    .catch(err => {
+        console.error('Erro ao sincronizar o banco de dados:', err);
+    });
