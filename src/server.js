@@ -6,18 +6,17 @@ app.use(express.json());
 const database = require('./config/database');
 
 const userController = require('./controllers/userController');
-const projectController = require('./controllers/projectController');
 
 const userRoutes = require('./routes/userRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 
-//app.post('/login', userController.login);
-app.post('/register', projectController.getProject);
+app.post('/register', userController.createUser);
+app.post('/login', userController.login);
 
-/*app.use('/api', userRoutes);
-app.use('/api', taskRoutes);
-app.use('/api', projectRoutes);*/
+app.use('/rota', userRoutes);
+app.use('/rota', taskRoutes);
+app.use('/rota', projectRoutes);
 
 database.db.sync({ force: true })
     .then(() => {
