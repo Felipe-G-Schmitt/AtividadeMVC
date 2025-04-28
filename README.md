@@ -24,20 +24,24 @@ A autenticação é feita via JWT e o banco de dados utilizado é MySQL.
 ## Estrutura
 
 /config
-    database.js             # Configuração do Sequelize
+database.js
+
 /controllers
-    userController.js       # Lógica de usuários
-    taskController.js       # Lógica de tarefas
-    projectController.js    # Lógica de projetos
+userController.js
+taskController.js
+projectController.js
+
 /models
-    user.js                 # Model de usuários
-    task.js                 # Model de tarefas
-    project.js              # Model de projetos
+user.js
+task.js
+project.js
+
 /routes
-    userRoutes.js           # Rotas de usuários
-    taskRoutes.js           # Rotas de tarefas
-    projectRoutes.js        # Rotas de projetos
-server.js                   # Inicialização do servidor e rotas
+userRoutes.js
+taskRoutes.js
+projectRoutes.js
+
+server.js
 
 ---
 
@@ -140,8 +144,6 @@ npm start
 ---
 
 ## Rotas
-
-## 📬 Rotas da API
 
 | Método | Rota                  | Descrição                         | Autenticação |
 |--------|-----------------------|-----------------------------------|--------------|
